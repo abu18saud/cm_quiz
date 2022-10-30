@@ -1,0 +1,51 @@
+<div class="container mt-5">
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+
+    <span>
+      Develop a method that perform the below: <br>
+      <ol>
+        <li>Make API call to "https://fakerapi.it/api/v1/products"</li>
+        <li>Sort "data" by price Desc (make use of dictionary or useful data structure)</li>
+        <li>After sorting, retrieve second item and return its "image"</li>
+      </ol>
+    </span>
+    <a href="https://github.com/abu18saud/cm_quiz.git" target="_blank" class="custom-badge text-uppercase">
+      <i class="mdi mdi-github"></i> Show code
+    </a>
+
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let item of data; index as i;" [title]="item.description">
+
+      <div class="card border border-dark mt-3 mr-2 mb-3">
+        <span *ngFor="let tag of item.tags" class="off bg-dark">{{tag}}</span>
+        <div class="text-center p-4"> <img [id]="'main-image_' + i" [src]="item.image" width="300" /> </div>
+        <div class="thumbnail text-center">
+          <img (click)="change_image(img.url, i)" *ngFor="let img of item.images" [title]="img.title"
+            [alt]="img.description" [src]="img.url" width="70">
+        </div>
+        <div class="about text-center">
+          <h6>{{item.name}}</h6> <span>$ {{item.price}}</span>
+        </div>
+        <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center"> <button
+            class="btn btn-dark text-uppercase">Add to cart</button>
+          <div class="add"> <span class="product_fav" data-toggle="tooltip" title="Add to fav list"><i
+                class="mdi mdi-heart-outline"></i></span> <span class="product_fav"><i
+                class="mdi mdi-cart-minus"></i></span> </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+  </div>
+
+
+</div>
+
+<div class="mb-5">
+  <app-offer [item]="data[1]"></app-offer>
+</div>
